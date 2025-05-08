@@ -1,0 +1,41 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ['left_wheel']
+    right_wheel_names: ['right_wheel']
+    wheel_separation: 0.3
+    wheel_radius: 0.05
+    use_stamped_vel: false
+    publish_rate: 50.0
+
+    # PID controller parameters
+    linear.x.has_velocity_limits: true
+    linear.x.max_velocity: 0.5
+    angular.z.has_velocity_limits: true
+    angular.z.max_velocity: 1.0
+
+    # Odometry parameters
+    publish_odom: true
+    publish_odom_tf: true
+    odom_frame_id: odom
+    base_frame_id: base_link
+
+diffdrive_hardware:
+  ros__parameters:
+    hw_start_duration_sec: 0.0
+    hw_stop_duration_sec: 0.0
+    wheel_radius: 0.05
+    wheel_separation: 0.3
+    encoder_ticks_per_rev: 374
+    serial_port: "/dev/ttyUSB0"
+    baud_rate: 115200
+    timeout_ms: 1000 
